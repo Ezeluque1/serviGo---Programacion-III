@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Todos los textos fijos de la interfaz van aca, nunca escritos dentro del layout -->
+<resources>
+    <string name="app_name">serviGOv2</string>
+
+    <!-- La marca partida en dos para poder pintarla con los dos colores del logo -->
+    <string name="marca_servi">servi</string>
+    <string name="marca_go">GO</string>
+
+    <!-- Pantalla de servicios -->
+    <string name="titulo_servicios">¿Qué necesitás resolver hoy?</string>
+    <string name="hint_buscador">Buscá plomero, electricista, cerrajero…</string>
+    <string name="subtitulo_lista">Profesionales cerca</string>
+    <string name="sin_resultados">No se encontraron servicios</string>
+    <string name="sin_resultados_detalle">Probá buscando otro oficio o revisá tu conexión.</string>
+    <string name="aviso_limite_diario">Alcanzaste el límite diario de búsquedas. Te mostramos los servicios ya guardados.</string>
+    <string name="aviso_sin_conexion">Sin conexión. Mostrando los servicios guardados.</string>
+    <string name="ver_detalle">Ver detalle</string>
+
+    <!-- Chips de categoria: son atajos de busqueda, no datos de servicios -->
+    <string name="categoria_todos">Todos</string>
+    <string name="categoria_plomeria">Plomería</string>
+    <string name="categoria_electricidad">Electricidad</string>
+    <string name="categoria_gas">Gasista</string>
+    <string name="categoria_cerrajeria">Cerrajería</string>
+    <string name="categoria_limpieza">Limpieza</string>
+
+    <!-- Pantalla de detalle -->
+    <string name="titulo_detalle">Detalle del servicio</string>
+    <string name="etiqueta_precio">Precio</string>
+    <string name="etiqueta_direccion">Dirección</string>
+    <string name="etiqueta_descripcion">Sobre el servicio</string>
+    <string name="sin_contacto">Este servicio no publicó datos de contacto.</string>
+    <string name="boton_llamar">Llamar</string>
+    <string name="boton_email">Enviar email</string>
+    <string name="formato_resenias">(%1$s reseñas)</string>
+    <string name="servicio_no_encontrado">No se pudo cargar el servicio.</string>
+
+    <!-- Descripciones para accesibilidad -->
+    <string name="desc_buscar">Buscar</string>
+    <string name="desc_volver">Volver</string>
+    <string name="desc_imagen_servicio">Imagen del servicio</string>
+    <string name="desc_rating">Puntuación</string>
+    <string name="desc_ubicacion">Ubicación</string>
+
+    <!--
+      Chips de categoria. Son dos listas en paralelo:
+      "nombres" es lo que se ve, "consultas" es la palabra que se manda a la API.
+      El primero ("Todos") manda texto vacio, o sea: muestra todo lo guardado.
+    -->
+    <string-array name="categorias_nombres">
+        <item>@string/categoria_todos</item>
+        <item>@string/categoria_plomeria</item>
+        <item>@string/categoria_electricidad</item>
+        <item>@string/categoria_gas</item>
+        <item>@string/categoria_cerrajeria</item>
+        <item>@string/categoria_limpieza</item>
+    </string-array>
+
+    <string-array name="categorias_consultas">
+        <item></item>
+        <item>plomero</item>
+        <item>electricista</item>
+        <item>gasista</item>
+        <item>cerrajero</item>
+        <item>limpieza</item>
+    </string-array>
+</resources>

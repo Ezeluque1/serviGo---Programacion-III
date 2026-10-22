@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla principal: buscador + chips de categoria + lista de servicios -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/servigo_surface"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!--
+      fitsSystemWindows="true" le agrega a esta vista un espacio arriba y abajo
+      del tamanio exacto de la barra de estado y la barra de navegacion del celular.
+      Sin esto el contenido queda tapado por la hora y los iconos de notificaciones,
+      porque desde Android 15 la app se dibuja a pantalla completa por defecto.
+
+      El fondo de la raiz es blanco para que la franja de la barra de estado
+      combine con la barra de arriba de la app. El gris va en el contenido.
+    -->
+
+    <!-- Barra de arriba con el nombre de la app -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/servigo_surface"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/espacio_grande"
+        android:paddingVertical="@dimen/espacio_medio">
+
+        <ImageView
+            android:layout_width="@dimen/logo_barra"
+            android:layout_height="@dimen/logo_barra"
+            android:contentDescription="@null"
+            android:src="@drawable/logo_servigo" />
+
+        <!--
+          El nombre va en dos TextView pegados para repetir los dos colores
+          del logo: "servi" en azul oscuro y "GO" en azul.
+        -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/espacio_chico"
+            android:text="@string/marca_servi"
+            android:textColor="@color/servigo_navy"
+            android:textSize="@dimen/texto_titulo"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/marca_go"
+            android:textColor="@color/servigo_blue"
+            android:textSize="@dimen/texto_titulo"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Contenido principal (aca va el fondo gris de la pantalla) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/servigo_background"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextoTituloGrande"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/espacio_grande"
+            android:layout_marginTop="@dimen/espacio_grande"
+            android:text="@string/titulo_servicios" />
+
+        <!-- Buscador con forma de pastilla -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/alto_buscador"
+            android:layout_marginHorizontal="@dimen/espacio_grande"
+            android:layout_marginTop="@dimen/espacio_medio"
+            android:background="@drawable/fondo_buscador"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/espacio_grande">
+
+            <ImageView
+                android:layout_width="@dimen/icono_medio"
+                android:layout_height="@dimen/icono_medio"
+                android:contentDescription="@string/desc_buscar"
+                android:src="@drawable/ic_buscar" />
+
+            <EditText
+                android:id="@+id/campoBusqueda"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/espacio_chico"
+                android:autofillHints=""
+                android:background="@android:color/transparent"
+                android:hint="@string/hint_buscador"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/servigo_text_primary"
+                android:textColorHint="@color/servigo_text_secondary"
+                android:textSize="@dimen/texto_cuerpo" />
+        </LinearLayout>
+
+        <!-- Chips de categoria: atajos que escriben el texto en el buscador -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/espacio_medio"
+            android:clipToPadding="false"
+            android:paddingHorizontal="@dimen/espacio_grande"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/grupoCategorias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleLine="true"
+                app:singleSelection="true" />
+        </HorizontalScrollView>
+
+        <!-- Aviso de sin conexion o limite diario. Oculto por defecto. -->
+        <LinearLayout
+            android:id="@+id/contenedorAviso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/espacio_grande"
+            android:layout_marginTop="@dimen/espacio_medio"
+            android:background="@drawable/fondo_caja_clara"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/espacio_medio"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="@dimen/icono_medio"
+                android:layout_height="@dimen/icono_medio"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_alerta" />
+
+            <TextView
+                android:id="@+id/textoAviso"
+                style="@style/TextoSecundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/espacio_chico"
+                android:textSize="@dimen/texto_chico" />
+        </LinearLayout>
+
+        <!--
+          Barrita de carga. Usamos LinearProgressIndicator de Material en vez del
+          ProgressBar viejo: el estilo "Widget.ProgressBar.Horizontal" con
+          indeterminate NO se anima y queda como una franja azul pintada.
+          Arranca en "invisible" (no en "gone") para que ocupe siempre su lugar
+          y la lista no pegue un salto cada vez que aparece o desaparece.
+        -->
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/barraCarga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/espacio_grande"
+            android:layout_marginTop="@dimen/espacio_medio"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            app:indicatorColor="@color/servigo_blue"
+            app:trackColor="@color/servigo_divider"
+            app:trackCornerRadius="2dp"
+            app:trackThickness="3dp" />
+
+        <TextView
+            android:id="@+id/subtituloLista"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/espacio_grande"
+            android:layout_marginTop="@dimen/espacio_grande"
+            android:layout_marginBottom="@dimen/espacio_chico"
+            android:text="@string/subtitulo_lista"
+            android:textColor="@color/servigo_text_primary"
+            android:textSize="@dimen/texto_titulo"
+            android:textStyle="bold" />
+
+        <!-- Contenedor de la lista y del estado vacio -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listaServicios"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/espacio_chico"
+                android:paddingBottom="@dimen/espacio_grande"
+                tools:listitem="@layout/item_servicio" />
+
+            <!-- Estado vacio: se muestra cuando la lista no tiene nada -->
+            <LinearLayout
+                android:id="@+id/estadoVacio"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/espacio_extra"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:alpha="0.5"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_buscar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/espacio_medio"
+                    android:text="@string/sin_resultados"
+                    android:textColor="@color/servigo_text_primary"
+                    android:textSize="@dimen/texto_nombre"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/TextoSecundario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="@string/sin_resultados_detalle"
+                    android:textSize="@dimen/texto_chico" />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

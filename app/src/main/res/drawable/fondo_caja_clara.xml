@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Caja celeste clara que usamos para el precio y los avisos -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/servigo_chip_bg" />
+    <corners android:radius="@dimen/radio_imagen" />
+</shape>

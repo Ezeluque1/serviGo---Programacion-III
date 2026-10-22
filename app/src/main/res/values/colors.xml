@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores originales de la plantilla -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta serviGO: sacada del logo y de las pantallas de referencia -->
+    <color name="servigo_blue">#1A5FE0</color>
+    <color name="servigo_blue_dark">#1442A8</color>
+    <color name="servigo_navy">#17224D</color>
+    <color name="servigo_teal">#17C9C0</color>
+    <color name="servigo_orange">#F7901E</color>
+
+    <!-- Fondos y textos -->
+    <color name="servigo_background">#F4F6FB</color>
+    <color name="servigo_surface">#FFFFFF</color>
+    <color name="servigo_text_primary">#17224D</color>
+    <color name="servigo_text_secondary">#6B7280</color>
+    <color name="servigo_chip_bg">#EEF2FE</color>
+    <color name="servigo_divider">#E8EBF2</color>
+</resources>

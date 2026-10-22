@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Imagen que se muestra mientras carga la foto o si falla (sin conexion) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/servigo_chip_bg" />
+            <corners android:radius="@dimen/radio_imagen" />
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_imagen"
+        android:gravity="center"
+        android:width="28dp"
+        android:height="28dp" />
+</layer-list>

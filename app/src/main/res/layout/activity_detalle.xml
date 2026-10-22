@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Pantalla de detalle de un servicio.
+  Las filas que dependen de datos opcionales (rating, telefono, email) arrancan
+  ocultas y la Activity las muestra solo si la API mando ese dato.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/servigo_surface"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!--
+      fitsSystemWindows="true": reserva el espacio de la barra de estado (arriba)
+      y de la barra de navegacion (abajo) para que no tapen el contenido.
+    -->
+
+    <!-- Barra superior con el boton de volver -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/servigo_surface"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/espacio_medio"
+        android:paddingVertical="@dimen/espacio_medio">
+
+        <ImageView
+            android:id="@+id/botonVolver"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/desc_volver"
+            android:padding="@dimen/espacio_chico"
+            android:src="@drawable/ic_volver" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/espacio_chico"
+            android:text="@string/titulo_detalle"
+            android:textColor="@color/servigo_text_primary"
+            android:textSize="@dimen/texto_titulo"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/servigo_background"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/espacio_grande">
+
+            <!-- Imagen grande del servicio -->
+            <ImageView
+                android:id="@+id/imagenDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/imagen_detalle"
+                android:background="@color/servigo_chip_bg"
+                android:contentDescription="@string/desc_imagen_servicio"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/placeholder_servicio" />
+
+            <!-- Tarjeta blanca con la informacion -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/espacio_medio"
+                android:layout_marginTop="-24dp"
+                android:background="@drawable/fondo_tarjeta"
+                android:elevation="@dimen/elevacion_tarjeta"
+                android:orientation="vertical"
+                android:padding="@dimen/espacio_grande">
+
+                <TextView
+                    android:id="@+id/nombreDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/servigo_text_primary"
+                    android:textSize="@dimen/texto_titulo_grande"
+                    android:textStyle="bold"
+                    tools:text="Plomero Gasista Electricista P.E.G" />
+
+                <!-- Nombre del negocio: oculto si es igual al nombre o si no vino -->
+                <TextView
+                    android:id="@+id/negocioDetalle"
+                    style="@style/TextoSecundario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:visibility="gone"
+                    tools:text="Negocio" />
+
+                <!-- Rating: oculto si la API no mando puntuacion -->
+                <LinearLayout
+                    android:id="@+id/contenedorRatingDetalle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/espacio_chico"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="@dimen/icono_medio"
+                        android:layout_height="@dimen/icono_medio"
+                        android:contentDescription="@string/desc_rating"
+                        android:src="@drawable/ic_estrella" />
+
+                    <TextView
+                        android:id="@+id/ratingDetalle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/servigo_text_primary"
+                        android:textSize="@dimen/texto_nombre"
+                        android:textStyle="bold"
+                        tools:text="5.0" />
+
+                    <TextView
+                        android:id="@+id/reseniasDetalle"
+                        style="@style/TextoSecundario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        tools:text="(104 reseñas)" />
+                </LinearLayout>
+
+                <!-- Caja del precio -->
+                <LinearLayout
+                    android:id="@+id/contenedorPrecioDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/espacio_grande"
+                    android:background="@drawable/fondo_caja_clara"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/espacio_medio"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="@dimen/icono_medio"
+                        android:layout_height="@dimen/icono_medio"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_precio" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/espacio_medio"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextoSecundario"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/etiqueta_precio"
+                            android:textSize="@dimen/texto_chico" />
+
+                        <TextView
+                            android:id="@+id/precioDetalle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/servigo_text_primary"
+                            android:textSize="@dimen/texto_nombre"
+                            android:textStyle="bold"
+                            tools:text="Consultar" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Descripcion -->
+                <TextView
+                    android:id="@+id/tituloDescripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/espacio_grande"
+                    android:text="@string/etiqueta_descripcion"
+                    android:textColor="@color/servigo_text_primary"
+                    android:textSize="@dimen/texto_nombre"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/descripcionDetalle"
+                    style="@style/TextoSecundario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:lineSpacingExtra="2dp"
+                    android:visibility="gone"
+                    tools:text="Descripción del servicio" />
+
+                <!-- Direccion -->
+                <LinearLayout
+                    android:id="@+id/contenedorDireccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/espacio_grande"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="@dimen/icono_medio"
+                        android:layout_height="@dimen/icono_medio"
+                        android:contentDescription="@string/desc_ubicacion"
+                        android:src="@drawable/ic_ubicacion" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/espacio_chico"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextoSecundario"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/etiqueta_direccion"
+                            android:textSize="@dimen/texto_chico" />
+
+                        <TextView
+                            android:id="@+id/direccionDetalle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/servigo_text_primary"
+                            android:textSize="@dimen/texto_cuerpo"
+                            tools:text="Dr. Enrique Finochietto 436, CABA" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Mensaje que aparece solo si no hay ni telefono ni email -->
+                <TextView
+                    android:id="@+id/sinContacto"
+                    style="@style/TextoSecundario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/espacio_grande"
+                    android:text="@string/sin_contacto"
+                    android:textSize="@dimen/texto_chico"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Barra de acciones de abajo: los botones aparecen solo si hay dato real -->
+    <LinearLayout
+        android:id="@+id/barraAcciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/servigo_surface"
+        android:orientation="horizontal"
+        android:padding="@dimen/espacio_medio"
+        android:visibility="gone">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/botonEmail"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/espacio_chico"
+            android:layout_weight="1"
+            android:text="@string/boton_email"
+            android:textAllCaps="false"
+            android:textColor="@color/servigo_blue"
+            android:visibility="gone"
+            app:cornerRadius="@dimen/radio_boton"
+            app:icon="@drawable/ic_email"
+            app:iconTint="@color/servigo_blue" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/botonLlamar"
+            style="@style/BotonPrimario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/boton_llamar"
+            android:visibility="gone"
+            app:icon="@drawable/ic_telefono"
+            app:iconTint="@color/white" />
+    </LinearLayout>
+</LinearLayout>

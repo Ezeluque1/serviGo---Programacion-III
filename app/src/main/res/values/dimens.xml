@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Medidas reutilizables, para no repetir numeros sueltos en cada layout -->
+<resources>
+    <!-- Separaciones -->
+    <dimen name="espacio_chico">8dp</dimen>
+    <dimen name="espacio_medio">12dp</dimen>
+    <dimen name="espacio_grande">16dp</dimen>
+    <dimen name="espacio_extra">24dp</dimen>
+
+    <!-- Esquinas redondeadas -->
+    <dimen name="radio_tarjeta">16dp</dimen>
+    <dimen name="radio_buscador">28dp</dimen>
+    <dimen name="radio_boton">24dp</dimen>
+    <dimen name="radio_chip">18dp</dimen>
+    <dimen name="radio_imagen">12dp</dimen>
+
+    <!-- Tamanios -->
+    <dimen name="elevacion_tarjeta">2dp</dimen>
+    <dimen name="alto_buscador">52dp</dimen>
+    <dimen name="imagen_item">64dp</dimen>
+    <dimen name="imagen_detalle">220dp</dimen>
+    <dimen name="icono_chico">16dp</dimen>
+    <dimen name="icono_medio">24dp</dimen>
+
+    <!-- Textos -->
+    <dimen name="texto_titulo_grande">22sp</dimen>
+    <dimen name="texto_titulo">18sp</dimen>
+    <dimen name="texto_nombre">16sp</dimen>
+    <dimen name="texto_cuerpo">14sp</dimen>
+    <dimen name="texto_chico">12sp</dimen>
+
+    <dimen name="borde_chip">1dp</dimen>
+    <dimen name="logo_barra">28dp</dimen>
+</resources>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tarjeta de un servicio dentro de la lista. Solo muestra campos reales de la API. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/espacio_grande"
+    android:layout_marginBottom="@dimen/espacio_medio"
+    android:background="@drawable/fondo_tarjeta"
+    android:elevation="@dimen/elevacion_tarjeta"
+    android:orientation="vertical"
+    android:padding="@dimen/espacio_grande">
+
+    <!-- Fila de arriba: foto + nombre + direccion + rating -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imagenServicio"
+            android:layout_width="@dimen/imagen_item"
+            android:layout_height="@dimen/imagen_item"
+            android:background="@drawable/fondo_imagen"
+            android:clipToOutline="true"
+            android:contentDescription="@string/desc_imagen_servicio"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/placeholder_servicio" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/espacio_medio"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nombreServicio"
+                style="@style/TextoNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                tools:text="Plomero Gasista Electricista" />
+
+            <TextView
+                android:id="@+id/direccionServicio"
+                style="@style/TextoSecundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textSize="@dimen/texto_chico"
+                tools:text="Dr. Enrique Finochietto 436, CABA" />
+
+            <!-- Rating: se oculta entero si la API no manda puntuacion -->
+            <LinearLayout
+                android:id="@+id/contenedorRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/espacio_chico"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/icono_chico"
+                    android:layout_height="@dimen/icono_chico"
+                    android:contentDescription="@string/desc_rating"
+                    android:src="@drawable/ic_estrella" />
+
+                <TextView
+                    android:id="@+id/ratingServicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/servigo_text_primary"
+                    android:textSize="@dimen/texto_cuerpo"
+                    android:textStyle="bold"
+                    tools:text="4.9" />
+
+                <TextView
+                    android:id="@+id/reseniasServicio"
+                    style="@style/TextoSecundario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textSize="@dimen/texto_chico"
+                    tools:text="(142 reseñas)" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="@dimen/espacio_medio"
+        android:background="@color/servigo_divider" />
+
+    <!-- Fila de abajo: precio + boton de detalle -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/contenedorPrecio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextoSecundario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/etiqueta_precio"
+                android:textSize="@dimen/texto_chico" />
+
+            <TextView
+                android:id="@+id/precioServicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/servigo_text_primary"
+                android:textSize="@dimen/texto_nombre"
+                android:textStyle="bold"
+                tools:text="Consultar" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/botonDetalle"
+            style="@style/BotonPrimario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ver_detalle"
+            android:textSize="@dimen/texto_cuerpo"
+            app:icon="@drawable/ic_flecha"
+            app:iconGravity="end"
+            app:iconSize="@dimen/icono_chico"
+            app:iconTint="@color/white" />
+    </LinearLayout>
+</LinearLayout>
